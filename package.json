@@ -2,9 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "parcel src/**/*.html -p 3000"
+    "dev": "parcel src/**/*.html -p 3000",
+    "build": "parcel build src/**/*.html"
   },
   "keywords": [],
   "author": "",

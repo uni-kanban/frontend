@@ -114,7 +114,7 @@
     <div>
       <h2>Create task</h2>
       <div id="todo">
-        <form action="/add_task.php" method="POST" class="task">
+        <form action="/api/add_task.php" method="POST" class="task">
           <input name="name" placeholder="">
           <input type="date" name="deadline" id="deadline">
           <input name="description" placeholder="description">
@@ -127,7 +127,7 @@
     <div>
       <h2>Submitted</h2>
       <div id="submitted">
-        <form action="/grade_task.php" method="POST" class="task">
+        <form action="/api/grade_task.php" method="POST" class="task">
           <h3>task</h3>
           <div class="desc">descriptiondescriptiondescriptiondescription</div>
           <date>12 Feb 2021</date>
@@ -154,7 +154,7 @@
       </div>
     </div>
   </div>
-  <form action="/add_subject.php" id="add_subject" method="POST">
+  <form action="/api/add_subject.php" id="add_subject" method="POST">
     <h2>Create a subject</h2>
     <input name="name" placeholder="Subject name">
     <button type="submit">Add subject</button>
