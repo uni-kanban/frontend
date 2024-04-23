@@ -105,8 +105,10 @@
 <body>
   <header>
     <h1>Teacher Dashboard</h1>
-    <div name="subjects" id="subjects">
-    </div>
+    <form action="/teacher" method="GET">
+      <div name="subjects" id="subjects"></div>
+      <button type="submit">Switch</button>
+    </form>
   </header>
   <div id="app">
     <div>
@@ -117,7 +119,7 @@
           <input type="date" name="deadline" id="deadline">
           <input name="description" placeholder="description">
           <input name="status" value="open" hidden />
-          <input name="subject_id" value="open" hidden />
+          <input name="subject_id" id="subject_id" hidden />
           <button type="submit">Add task</button>
         </form>
       </div>
