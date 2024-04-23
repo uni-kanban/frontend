@@ -105,10 +105,8 @@
 <body>
   <header>
     <h1>Teacher Dashboard</h1>
-    <select name="subjects" id="subjects">
-      <option value="backend">Backend</option>
-      <option value="ds">Data Science</option>
-    </select>
+    <div name="subjects" id="subjects">
+    </div>
   </header>
   <div id="app">
     <div>
@@ -156,8 +154,9 @@
   </div>
   <form action="/api/add_subject.php" id="add_subject" method="POST">
     <h2>Create a subject</h2>
-    <input name="name" placeholder="Subject name">
+    <input name="name" required placeholder="Subject name">
     <button type="submit">Add subject</button>
   </form>
+  <script type="module" src="./app.tsx"></script>
 </body>
 </html>
