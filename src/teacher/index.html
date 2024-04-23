@@ -60,6 +60,9 @@
       padding: 14px;
       width: 100%;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
     .task h3 {
       font-size: 24px;
@@ -83,11 +86,25 @@
       height: max-content;
       font-size: 36px;
     }
+    #add_subject {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      background-color: rgb(136, 185, 136);
+      width: 600px;
+      margin: 48px auto;
+      border-radius: 12px;
+      padding-bottom: 36px;
+    }
+    input, button {
+      font-size: 24px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Student Dashboard</h1>
+    <h1>Teacher Dashboard</h1>
     <select name="subjects" id="subjects">
       <option value="backend">Backend</option>
       <option value="ds">Data Science</option>
@@ -95,24 +112,28 @@
   </header>
   <div id="app">
     <div>
-      <h2>Todo</h2>
+      <h2>Create task</h2>
       <div id="todo">
-        <form action="/submit_task.php" method="POST" class="task">
-          <h3>task</h3>
-          <div class="desc">descriptiondescriptiondescriptiondescription</div>
-          <date>12 Feb 2021</date>
-          <input type="file" name="file" />
+        <form action="/add_task.php" method="POST" class="task">
+          <input name="name" placeholder="">
+          <input type="date" name="deadline" id="deadline">
+          <input name="description" placeholder="description">
+          <input name="status" value="open" hidden />
+          <input name="subject_id" value="open" hidden />
+          <button type="submit">Add task</button>
         </form>
       </div>
     </div>
     <div>
       <h2>Submitted</h2>
       <div id="submitted">
-        <div class="task">
+        <form action="/grade_task.php" method="POST" class="task">
           <h3>task</h3>
           <div class="desc">descriptiondescriptiondescriptiondescription</div>
-          <date>12 Feb 2022</date>
-        </div>
+          <date>12 Feb 2021</date>
+          <input name="grade" type="number" required placeholder="Put your grade (0-10)" />
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
     <div>
@@ -133,6 +154,10 @@
       </div>
     </div>
   </div>
-  <script type="module" src="app.ts"></script>
+  <form action="/add_subject.php" id="add_subject" method="POST">
+    <h2>Create a subject</h2>
+    <input name="name" placeholder="Subject name">
+    <button type="submit">Add subject</button>
+  </form>
 </body>
 </html>
