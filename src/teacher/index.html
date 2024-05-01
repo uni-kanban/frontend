@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    body {
+   body {
       margin: 0;
     }
     * {
@@ -22,10 +22,9 @@
     h2 {
       font-size: 48px;
     }
-    #app {
+    main {
       background-color: rgb(195, 138, 225);
       min-height: 80vh;
-      height: 100%;
       width: 90%;
       margin: 0 auto;
       border-radius: 16px;
@@ -35,7 +34,7 @@
       padding: 48px;
       box-sizing: border-box;
     }
-    #app > div {
+    section {
       height: 100%;
       width: 100%;
       border-radius: inherit;
@@ -44,7 +43,10 @@
       flex-direction: column;
       align-items: center;
     }
-    #app > div > div, #todo > div {
+    section > div {
+      width: 100%;
+    }
+    div div {
       width: 100%;
       height: 100%;
       display: flex;
@@ -56,14 +58,11 @@
       gap: 24px;
     }
     .task {
-      border-radius: 16px;
+      border-radius: inherit;
       background-color: pink;
       padding: 14px;
       width: 100%;
       box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
     }
     .task h3 {
       font-size: 24px;
@@ -108,22 +107,22 @@
     <h1>Teacher Dashboard</h1>
     <div name="subjects" id="subjects"></div>
   </header>
-  <div id="app">
-    <div>
+  <main>
+    <section>
       <h2>Created tasks</h2>
       <div id="todo"></div>
-    </div>
-    <div>
+    </section>
+    <section>
       <h2>Submitted</h2>
       <div id="submitted">
       </div>
-    </div>
-    <div>
+    </section>
+    <section>
       <h2>Graded</h2>
       <div id="graded">
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
   <form action="/api/add_subject.php" id="add_subject" method="POST">
     <h2>Create a subject</h2>
     <input name="name" required placeholder="Subject name">

@@ -1,10 +1,8 @@
-import { Fragment, h, render } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
+import { h, render } from 'preact'
 import { Subjects } from 'src/common/subjects'
 
-
 const url = new URL(location.href)
-const subjectId =  url.searchParams.get('subject_id')!
+const subjectId = url.searchParams.get('subject_id')!
 
 const example = {
   'id': '1',
@@ -13,11 +11,14 @@ const example = {
   'name': 'test subject 2',
   'description': 'send file',
   'deadline': '2024-05-09',
+  grade: 1,
 }
 
 const res = await fetch('/api/get_tasks.php')
 
-const tasks = (await res.json() as (typeof example)[]).filter(t => t.subject_id === subjectId)
+const tasks = (await res.json() as (typeof example)[]).filter((t) =>
+  t.subject_id === subjectId
+)
 
 const CreatedTasks = () => {
   return (
@@ -30,7 +31,7 @@ const CreatedTasks = () => {
         <input name='subject_id' id='subject_id' hidden value={subjectId} />
         <button type='submit'>Add task</button>
       </form>
-      {tasks.map((task) => (
+      {tasks.filter((t) => t.status === 'opened').map((task) => (
         <div class='task'>
           <h3>{task.name}</h3>
           <div class='desc'>{task.description}</div>
@@ -65,7 +66,23 @@ const SubmittedTasks = () => {
   )
 }
 
+const GradedTasks = () => {
+  return (
+    <div>
+      {tasks.filter((task) => task.status === 'graded').map((task) => (
+        <div class='task'>
+          <h3>{task.name}</h3>
+          <div class='desc'>{task.description}</div>
+          <time>{task.deadline}</time>
+          <div>Grade: {task.grade}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 render(<CreatedTasks />, document.getElementById('todo') as HTMLElement)
 render(<SubmittedTasks />, document.getElementById('submitted') as HTMLElement)
+render(<GradedTasks />, document.getElementById('graded') as HTMLElement)
 
 render(<Subjects />, document.getElementById('subjects') as HTMLElement)
