@@ -24,7 +24,8 @@
     }
     #app {
       background-color: rgb(195, 138, 225);
-      height: 80vh;
+      min-height: 80vh;
+      height: 100%;
       width: 90%;
       margin: 0 auto;
       border-radius: 16px;
@@ -43,7 +44,7 @@
       flex-direction: column;
       align-items: center;
     }
-    #app > div > div {
+    #app > div > div, #todo > div {
       width: 100%;
       height: 100%;
       display: flex;
@@ -55,7 +56,7 @@
       gap: 24px;
     }
     .task {
-      border-radius: inherit;
+      border-radius: 16px;
       background-color: pink;
       padding: 14px;
       width: 100%;
@@ -105,52 +106,21 @@
 <body>
   <header>
     <h1>Teacher Dashboard</h1>
-    <form action="/teacher" method="GET">
-      <div name="subjects" id="subjects"></div>
-      <button type="submit">Switch</button>
-    </form>
+    <div name="subjects" id="subjects"></div>
   </header>
   <div id="app">
     <div>
-      <h2>Create task</h2>
-      <div id="todo">
-        <form action="/api/add_task.php" method="POST" class="task">
-          <input name="name" placeholder="">
-          <input type="date" name="deadline" id="deadline">
-          <input name="description" placeholder="description">
-          <input name="status" value="open" hidden />
-          <input name="subject_id" id="subject_id" hidden />
-          <button type="submit">Add task</button>
-        </form>
-      </div>
+      <h2>Created tasks</h2>
+      <div id="todo"></div>
     </div>
     <div>
       <h2>Submitted</h2>
       <div id="submitted">
-        <form action="/api/grade_task.php" method="POST" class="task">
-          <h3>task</h3>
-          <div class="desc">descriptiondescriptiondescriptiondescription</div>
-          <date>12 Feb 2021</date>
-          <input name="grade" min="0" max="10" type="number" required placeholder="Put your grade (0-10)" />
-          <button type="submit">Submit</button>
-        </form>
       </div>
     </div>
     <div>
       <h2>Graded</h2>
       <div id="graded">
-        <div class="task">
-          <h3>task</h3>
-          <div class="desc">descriptiondescriptiondescriptiondescription</div>
-          <date>12 Feb 2022</date>
-          <div>Grade: <span class="grade">3/10</span></div>
-        </div>
-        <div class="task">
-          <h3>task</h3>
-          <div class="desc">descriptiondescriptiondescriptiondescription</div>
-          <date>12 Feb 2022</date>
-          <div>Grade: <span class="grade">8/10</span></div>
-        </div>
       </div>
     </div>
   </div>

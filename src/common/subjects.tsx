@@ -1,6 +1,8 @@
 import { h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 
+const url = new URL(location.href)
+
 export const Subjects = () => {
   const [subjects, setSubjects] = useState<{ name: string; id: string }[]>([])
 
@@ -11,8 +13,21 @@ export const Subjects = () => {
   }, [])
 
   return (
-    <select name="subject">
-      {subjects.map((s) => <option value={s.id}>{s.name}</option>)}
+    <select
+      name='subject_id'
+      onChange={(e) => {
+        url.searchParams.set('subject_id', e.currentTarget.value)
+        location.search = url.search
+      }}
+    >
+      {subjects.map((s) => (
+        <option
+          selected={url.searchParams.get('subject_id') === s.id}
+          value={s.id}
+        >
+          {s.name}
+        </option>
+      ))}
     </select>
   )
 }
